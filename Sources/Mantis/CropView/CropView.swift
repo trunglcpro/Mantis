@@ -29,6 +29,7 @@ protocol CropViewDelegate: AnyObject {
     func cropViewDidBecomeUnResettable(_ cropView: CropView)
     func cropViewDidBeginResize(_ cropView: CropView)
     func cropViewDidEndResize(_ cropView: CropView)
+    func cropViewDidDidZoom(_ cropView: CropView)
 }
 
 class CropView: UIView {
@@ -138,7 +139,7 @@ class CropView: UIView {
     }
     
     private func render(by viewStatus: CropViewStatus) {
-        gridOverlayView.isHidden = false
+        gridOverlayView.isHidden = !cropViewConfig.enableCropBoxHotArea
         
         switch viewStatus {
         case .initial:

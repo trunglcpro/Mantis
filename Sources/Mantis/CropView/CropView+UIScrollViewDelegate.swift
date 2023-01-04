@@ -40,4 +40,8 @@ extension CropView: UIScrollViewDelegate {
             viewModel.setBetweenOperationStatus()
         }
     }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        delegate?.cropViewDidDidZoom(self)
+    }
 }

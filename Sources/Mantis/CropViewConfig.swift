@@ -5,6 +5,7 @@ public struct CropViewConfig {
         This value is for how easy to drag crop box. The bigger, the easier.
      */
     public var cropBoxHotAreaUnit: CGFloat = 32
+    public var enableCropBoxHotArea = true
     
     public var cropShapeType: CropShapeType = .rect
     
@@ -31,7 +32,7 @@ public struct CropViewConfig {
     
     public var padding: CGFloat = 14
     
-    var minimumCropBoxSize: CGFloat = 42
+    public var minimumCropBoxSize: CGFloat = 42
 
     public init() {}
 }

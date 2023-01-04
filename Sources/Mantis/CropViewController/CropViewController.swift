@@ -35,6 +35,7 @@ public protocol CropViewControllerDelegate: AnyObject {
     func cropViewControllerDidBeginResize(_ cropViewController: CropViewController)
     func cropViewControllerDidEndResize(_ cropViewController: CropViewController, original: UIImage, cropInfo: CropInfo)
     func cropViewControllerDidImageTransformed(_ cropViewController: CropViewController)
+    func cropViewControllerDidZoom(_ cropViewController: CropViewController)
 }
 
 public extension CropViewControllerDelegate where Self: UIViewController {
@@ -62,6 +63,12 @@ public class CropViewController: UIViewController {
         image: image,
         cropViewConfig: config.cropViewConfig
     )
+    
+    public var scrollView: UIScrollView {
+        get {
+            return cropView.scrollView
+        }
+    }
 
     private var cropToolbar: CropToolbarProtocol
     private var ratioPresenter: RatioPresenter?
@@ -512,6 +519,10 @@ extension CropViewController: CropViewDelegate {
     
     func cropViewDidEndResize(_ cropView: CropView) {
         delegate?.cropViewControllerDidEndResize(self, original: cropView.image, cropInfo: cropView.getCropInfo())
+    }
+    
+    func cropViewDidDidZoom(_ cropView: CropView) {
+        delegate?.cropViewControllerDidZoom(self)
     }
 }
 
